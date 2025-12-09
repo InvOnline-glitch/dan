@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>¿Quieres ser mi novia?</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+            background: black;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        h1 {
+            margin-top: 30px;
+            position: relative;
+            z-index: 10;
+            color: #ff99e6; 
+            text-shadow: 0 0 10px #ff4ecb, 0 0 20px #ff99e6;
+        }
+
+        #foto {
+            font-size: 120px;
+            margin-top: 20px;
+            position: relative;
+            z-index: 10;
+            color: #ff99e6;
+            text-shadow: 0 0 15px #ff66cc, 0 0 25px #ff99e6;
+        }
+
+        button {
+            font-size: 25px;
+            padding: 12px 30px;
+            margin: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            z-index: 10;
+            font-weight: bold;
+        }
+
+        #si {
+            background-color: #ff66c4;
+            color: white;
+            box-shadow: 0 0 15px #ff66c4;
+        }
+
+        #no {
+            background-color: #663d7c;
+            color: white;
+            box-shadow: 0 0 10px #cc70ff;
+        }
+
+        /* Corazones animados */
+        .corazon {
+            position: absolute;
+            color: #ff66c4;
+            animation: flotar 6s linear infinite;
+            opacity: 0.9;
+            top: 60vh;
+            text-shadow: 0 0 10px #ff99e6;
+        }
+
+        @keyframes flotar {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-90vh) scale(2); opacity: 0; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>¿Quieres ser mi novia?</h1>
+
+    <div id="foto">😸💞💞</div>
+
+    <br><br>
+
+    <button id="si">Sí 💗</button>
+    <button id="no">No 💔</button>
+
+    <script>
+        const btnSi = document.getElementById("si");
+        const btnNo = document.getElementById("no");
+
+        let sizeSi = 25;
+        let sizeNo = 25;
+
+        // CREAR CORAZONES MÁS GRANDES Y ARRIBA
+        function crearCorazon() {
+            const heart = document.createElement("div");
+            heart.classList.add("corazon");
+            heart.innerHTML = "💗";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (40 + Math.random() * 60) + "px";  
+            heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(crearCorazon, 120);
+
+        // botón NO
+        btnNo.addEventListener("click", function() {
+            sizeSi += 25;
+            sizeNo -= 5;
+
+            btnSi.style.fontSize = sizeSi + "px";
+            btnSi.style.padding = (sizeSi/3) + "px " + (sizeSi/2) + "px";
+
+            btnNo.style.fontSize = sizeNo + "px";
+
+            if (sizeNo < 5) {
+                btnNo.style.display = "none";
+            }
+        });
+
+        // botón SI
+        btnSi.addEventListener("click", function() {
+            document.body.innerHTML = `
+                <h1 style="
+                    margin-top:140px; 
+                    font-size:48px; 
+                    background: linear-gradient(90deg, #ff99e6, #d966ff);
+                    -webkit-background-clip: text;
+                    color: transparent;
+                    text-shadow: 0 0 20px #ff99e6;
+                ">
+                    🎉 Felicidades Dani 💖<br>
+                    Ahora somos novios ✨<br>
+                    Te amo muchote 💓💓
+                </h1>
+            `;
+        });
+    </script>
+
+</body>
+</html>
